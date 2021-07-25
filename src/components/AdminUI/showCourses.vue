@@ -26,6 +26,10 @@
 
 
       <b-modal id="modal-1" title="Edit courses ">
+           <div v-if="success.length"> 
+              <p v-for="suc in success">    <b-alert show variant="success"> {{suc}} </b-alert> </p>
+          </div> 
+
         <div class="card">
             <div class="card-header">
                 Courses
@@ -73,7 +77,8 @@ export default {
           CourseTitle:"",
           level:"",
           Id:""
-      }
+      },
+      success:[],
    }
   },
   methods:{
@@ -90,8 +95,17 @@ export default {
       },
       update(e){
         e.preventDefault()
+
         let Id = this.edit.Id
-        
+       axios.put(`http://localhost:3000/api/course/course/${Id}`,this.edit)
+        .then(res=>{
+            if(res.data === 200){
+                 this.success.push('Course has been updated successfully')
+				  setTimeout(() => {
+                   location.reload()
+                 }, 1000);
+            }
+        }) 
 
 
       }
