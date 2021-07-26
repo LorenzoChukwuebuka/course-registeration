@@ -17,14 +17,20 @@
 		 
             
             <label for="input-none"> Course Code</label>
-             <b-form-input class="mb-3" v-model="form.courseCode" placeholder="Enter course code"></b-form-input>
+             <b-form-input class="mb-3 " v-model="form.courseCode" placeholder="Enter course code"></b-form-input>
               <label for="input-none">Course Title</label>
             <b-form-input v-model="form.CourseTitle" placeholder="Enter course title"></b-form-input>
              <div class='mb-3'>
 				<label for="input-none"> level</label>
-              <b-form-select class="mt-3" v-model="form.level">
+              <b-form-select class="mt-3 mx-1" v-model="form.level">
 				  <option value="__"> Select level </option>
                   <option class="px-3 " v-for="level in levels" :key="level.Id" :value="level.Id"> {{level.levels}} </option>
+              </b-form-select>
+
+			     <label for="input-none" class="mx-1"> unit </label>
+              <b-form-select class="mt-3 mx-1" v-model="form.courseLoad">
+				  <option value="__"> Select unit </option>
+                  <option class="px-3 " v-for="cu in load" :key="cu.Id" :value="cu.Id"> {{cu.course_load}} </option>
               </b-form-select>
               </div>
                <div>
@@ -45,7 +51,7 @@ axios.defaults.crossDomain = true
 export default {
     name:"addCourse",
 	props:[
-        'levels'
+        'levels','load'
 	],
   
      data(){
@@ -53,6 +59,7 @@ export default {
          form:{
 			 courseCode:'',
 			 CourseTitle:"",
+			 courseLoad:"",
 			 level:""
 		 },
 		 error:[],
@@ -71,20 +78,20 @@ export default {
   methods:{
 	  submit(e){
 		  e.preventDefault()
-		  axios.post("http://localhost:3000/api/course/course",this.form)
+		 axios.post("http://localhost:3000/api/course/course",this.form)
 		  .then(res=>{
 			  if(res.data === 200){ 
 				  this.success.push('Course added successfully')
 				  setTimeout(() => {
                    location.reload()
-                 }, 1000);
+                 }, 2000);
 			  }else if(res.data === 501){
 				  this.error.push('Course already exists')
 				  setTimeout(() => {
                    location.reload()
-                 }, 1000);
+                 }, 2000);
 			  }
-		  })
+		  }) 
 
 		   
 	  }

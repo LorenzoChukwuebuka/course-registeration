@@ -8,7 +8,7 @@
     <div class="navbar-nav">
       <router-link :to="{name:'AdminHome'}" class="nav-link active" >Home </router-link>
       <router-link :to="{name:'courses'}" class="nav-link active" > Courses </router-link>
-      <router-link :to="{name:'Home'}" class="nav-link active" > Student </router-link>
+      <router-link :to="{name:'student'}" class="nav-link active" > Student </router-link>
       <router-link :to="{name:'Home'}" class="nav-link active" > Result </router-link>
       
     </div>

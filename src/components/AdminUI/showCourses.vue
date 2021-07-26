@@ -46,6 +46,12 @@
                                 <option value="__"> Select level </option>
                                 <option class="px-3 " v-for="level in levels" :key="level.Id" :value="level.Id"> {{level.levels}} </option>
                             </b-form-select>
+
+							  <label for="input-none" class="mx-1"> unit </label>
+							<b-form-select class="mt-3 mx-1" v-model="edit.courseLoad">
+								<option value="__"> Select unit </option>
+								<option class="px-3 " v-for="cu in load" :key="cu.Id" :value="cu.Id"> {{cu.course_load}} </option>
+							</b-form-select>
                      </div> 
 
                        <b-form-input class="mb-3" v-model="edit.Id" hidden> </b-form-input>
@@ -68,7 +74,7 @@
 import axios from 'axios'
 export default {
   name:'showCourse',
-  props:['course','levels'],
+  props:['course','levels','load'],
   data(){
   return{
       edited:null,
@@ -76,6 +82,7 @@ export default {
           courseCode:"",
           CourseTitle:"",
           level:"",
+          courseLoad:"",
           Id:""
       },
       success:[],
@@ -90,6 +97,7 @@ export default {
           this.edit.courseCode = this.edited.course_code
           this.edit.CourseTitle = this.edited.course_title
           this.edit.level = this.edited.levelId
+		  this.edit.courseLoad = this.edited.course_load
           this.edit.Id = this.edited.cid
           
       },

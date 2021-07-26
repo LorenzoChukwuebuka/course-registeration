@@ -5,9 +5,9 @@
 
   <div class="row container  "> 
 
-    <addCourse :levels="levels"/>
+    <addCourse :levels="levels" :load="load"/>
 
-    <showCourse @Id="delcourse" :course="course" :levels="levels"/>
+    <showCourse @Id="delcourse" :course="course" :load="load" :levels="levels"/>
 
 
    </div>
@@ -40,7 +40,7 @@ data(){
      return{
          levels:[],
         course:[],
-		edited:null,
+		 load:[]
 	 
       
      }
@@ -48,6 +48,7 @@ data(){
 mounted(){
   this.getlevels()
   this.getCourse()
+  this.getCourseUnit()
 },
 
    methods:{
@@ -56,6 +57,12 @@ mounted(){
 		   .then(res=>{
 			  this.levels = res.data
 			   
+		   })
+	   },
+	   getCourseUnit(){
+		   axios.get('http://localhost:3000/api/course/courseLoad')
+		   .then(res=>{
+              this.load = res.data
 		   })
 	   },
      getCourse(){

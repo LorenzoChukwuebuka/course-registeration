@@ -4,6 +4,7 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import AdminHome from '../views/Admin/Home.vue'
 import courses from '../views/Admin/courses.vue'
+import student from '../views/Admin/student.vue'
 
 Vue.use(VueRouter)
 
@@ -30,6 +31,16 @@ const routes = [
     path: '/course',
     name: 'courses',
     component: courses,
+    beforeEnter:(to, from, next) => {
+      const isAuthenticated = localStorage.getItem('Id') ? true: false;
+      if (to.name !== 'Home' && !isAuthenticated) next({ name: 'Home' })
+      else next();
+      } 
+  },
+  {
+    path: '/student',
+    name: 'student',
+    component: student,
     beforeEnter:(to, from, next) => {
       const isAuthenticated = localStorage.getItem('Id') ? true: false;
       if (to.name !== 'Home' && !isAuthenticated) next({ name: 'Home' })
