@@ -30,7 +30,7 @@ export default {
    },
    mounted(){
       if(!this.IsAuthenticated){
-         this.$router.push('/')
+         this.$router.push('/AdminLog')
       }
    }
 }

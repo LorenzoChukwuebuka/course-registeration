@@ -5,12 +5,21 @@ import Home from '../views/Home.vue'
 import AdminHome from '../views/Admin/Home.vue'
 import courses from '../views/Admin/courses.vue'
 import student from '../views/Admin/student.vue'
+import userHome from '../views/User/home.vue'
+import userDash from '../views/User/UserDash.vue'
+import registerCourse from '../views/User/registerCourse.vue'
 
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/',
+    name: 'userHome',
+    component: userHome,
+  },
+
+  {
+    path: '/AdminLog',
     name: 'Home',
     component: Home
   },
@@ -47,6 +56,33 @@ const routes = [
       else next();
       } 
   },
+
+
+  {
+    path: '/userDash',
+    name: 'userDash',
+    component: userDash,
+    beforeEnter:(to, from, next) => {
+      const isAuthenticated = localStorage.getItem('Id') ? true: false;
+      if (to.name !== 'Home' && !isAuthenticated) next({ name: 'userHome' })
+      else next();
+      } 
+  },
+
+  {
+    path: '/registerCourse',
+    name: 'registerCourse',
+    component: registerCourse,
+    beforeEnter:(to, from, next) => {
+      const isAuthenticated = localStorage.getItem('Id') ? true: false;
+      if (to.name !== 'Home' && !isAuthenticated) next({ name: 'userHome' })
+      else next();
+      } 
+  },
+
+
+  
+
 
   {
     path: '/about',
