@@ -53,54 +53,54 @@
 </template>
 
 <script>
-import axios from "axios";
-axios.defaults.crossDomain = true;
+import axios from 'axios'
+axios.defaults.crossDomain = true
 export default {
-  name: "addStudent",
-  data() {
+  name: 'addStudent',
+  data () {
     return {
       form: {
-        fname: "",
-        lname: "",
-        oname: "",
-        regNumber: "",
+        fname: '',
+        lname: '',
+        oname: '',
+        regNumber: ''
       },
       error: [],
-      success: [],
-    };
+      success: []
+    }
   },
   computed: {
-    disablebtn: function() {
+    disablebtn: function () {
       if (
         this.form.fname.length >= 3 &&
         this.form.lname.length >= 7 &&
         this.form.regNumber.length >= 8
       ) {
-        return false;
+        return false
       } else {
-        return true;
+        return true
       }
-    },
+    }
   },
   methods: {
-    submit(e) {
-      e.preventDefault();
-      axios.post("http://localhost:3000/api/student", this.form).then((res) => {
+    submit (e) {
+      e.preventDefault()
+      axios.post('http://localhost:3000/api/student', this.form).then(res => {
         if (res.data === 200) {
-          this.success.push("Student added successfully");
+          this.success.push('Student added successfully')
           setTimeout(() => {
-            location.reload();
-          }, 2000);
+            location.reload()
+          }, 2000)
         } else if (res.data === 501) {
-          this.error.push("Student already exists");
+          this.error.push('Student already exists')
           setTimeout(() => {
-            location.reload();
-          }, 2000);
+            location.reload()
+          }, 2000)
         }
-      });
-    },
-  },
-};
+      })
+    }
+  }
+}
 </script>
 
 <style></style>

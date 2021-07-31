@@ -12,7 +12,7 @@
 
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav>
-          <router-link :to="{ name: 'registerCourse'}" class="nav-link active">
+          <router-link :to="{ name: 'registerCourse' }" class="nav-link active">
             Register courses
           </router-link>
           <router-link :to="{ name: 'student' }" class="nav-link active">
@@ -26,8 +26,8 @@
 
 <script>
 export default {
-  name: "DashNav",
-};
+  name: 'DashNav'
+}
 </script>
 
 <style></style>
