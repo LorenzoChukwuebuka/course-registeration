@@ -8,6 +8,8 @@ import student from '../views/Admin/student.vue'
 import userHome from '../views/User/home.vue'
 import userDash from '../views/User/UserDash.vue'
 import registerCourse from '../views/User/registerCourse.vue'
+import result from '../views/Admin/resultInput.vue'
+import resultInput from '../views/Admin/inputSheet.vue'
 
 Vue.use(VueRouter)
 
@@ -79,6 +81,30 @@ const routes = [
       else next();
       } 
   },
+
+
+  {
+    path: '/result',
+    name: 'result',
+    component: result,
+    beforeEnter:(to, from, next) => {
+      const isAuthenticated = localStorage.getItem('Id') ? true: false;
+      if (to.name !== 'Home' && !isAuthenticated) next({ name: 'userHome' })
+      else next();
+      } 
+  },
+
+  {
+    path: '/resultInput',
+    name: 'resultInput',
+    component: resultInput,
+    beforeEnter:(to, from, next) => {
+      const isAuthenticated = localStorage.getItem('Id') ? true: false;
+      if (to.name !== 'Home' && !isAuthenticated) next({ name: 'userHome' })
+      else next();
+      } 
+  },
+
 
 
   

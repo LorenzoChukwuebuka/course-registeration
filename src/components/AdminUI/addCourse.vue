@@ -44,7 +44,7 @@
           </b-form-select>
 
 		   <label for="input-none"> semester</label>
-          <b-form-select class="mt-3 mx-1" v-model="form.semester">
+          <b-form-select class="mt-3 mx-1 form-select-md" v-model="form.semester">
             <option value="__"> Select semester </option>
             <option
               class="px-3 "

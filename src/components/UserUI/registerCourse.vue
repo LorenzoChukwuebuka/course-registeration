@@ -97,27 +97,24 @@ export default {
     submit (e) {
       e.preventDefault()
 
-    /*  this.$swal({
+      this.$swal({
         title: 'Do you want to register courses?',
         showDenyButton: true,
         showCancelButton: true,
         confirmButtonText: `Save`,
         denyButtonText: `Don't save`
       }).then(result => {
-        /* Read more about isConfirmed, isDenied below 
+        /* Read more about isConfirmed, isDenied below */
         axios.post('http://localhost:3000/api/courseRegister', this.form)
         if (result.isConfirmed) {
           this.$swal('Saved!', '', 'success')
         } else if (result.isDenied) {
           this.$swal('Changes are not saved', '', 'info')
         }
-      })  */
-
-	       axios.post('http://localhost:3000/api/courseRegister', this.form).then(
-			   res=>{
-				   console.log(res.data )
-			   }
-		   )
+      })
+      setTimeout(() => {
+        location.reload()
+      }, 3000)
     }
   }
 }

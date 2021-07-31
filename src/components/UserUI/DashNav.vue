@@ -15,7 +15,10 @@
           <router-link :to="{ name: 'registerCourse' }" class="nav-link active">
             Register courses
           </router-link>
-          <router-link :to="{ name: 'student' }" class="nav-link active">
+		    <router-link :to="{ name: '' }" class="nav-link active">
+            view registered courses
+          </router-link>
+          <router-link :to="{ name: '' }" class="nav-link active">
             view results
           </router-link>
         </b-navbar-nav>
